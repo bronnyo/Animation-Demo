@@ -2,6 +2,7 @@ const gameEngine = new GameEngine();
 
 const ASSET_MANAGER = new AssetManager();
 
+ASSET_MANAGER.queueDownload("./pixelforest.png");
 ASSET_MANAGER.queueDownload("./Yogi.png");
 
 ASSET_MANAGER.downloadAll(() => {
@@ -10,6 +11,7 @@ ASSET_MANAGER.downloadAll(() => {
 	ctx.imageSmoothingEnabled = false;
 
 	gameEngine.addEntity(new YogiBear(gameEngine));
+	gameEngine.addEntity(new Background(gameEngine));
 
 	gameEngine.init(ctx);
 

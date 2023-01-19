@@ -14,6 +14,10 @@ class GameEngine {
         this.mouse = null;
         this.wheel = null;
         this.keys = {};
+        this.left = false;
+        this.right = false;
+        this.up = false;
+        this.down = false;
 
         // Options and the Details
         this.options = options || {
@@ -37,6 +41,8 @@ class GameEngine {
     };
 
     startInput() {
+        this.keyboardActive = false;
+        let that = this;
         const getXandY = e => ({
             x: e.clientX - this.ctx.canvas.getBoundingClientRect().left,
             y: e.clientY - this.ctx.canvas.getBoundingClientRect().top
@@ -72,8 +78,55 @@ class GameEngine {
             this.rightclick = getXandY(e);
         });
 
-        this.ctx.canvas.addEventListener("keydown", event => this.keys[event.key] = true);
-        this.ctx.canvas.addEventListener("keyup", event => this.keys[event.key] = false);
+        function keydownListener (e) {
+            that.keyboardActive = true;
+            switch (e.code) {
+                case "ArrowLeft":
+                case "KeyA":
+                    that.left = true;
+                    break;
+                case "ArrowRight":
+                case "KeyD":
+                    that.right = true;
+                    break;
+                case "ArrowUp":
+                case "KeyW":
+                    that.up = true;
+                    break;
+                case "ArrowDown":
+                case "KeyS":
+                    that.down = true;
+                    break;
+            }
+        }
+        function keyUpListener (e) {
+            that.keyboardActive = false;
+            switch (e.code) {
+                case "ArrowLeft":
+                case "KeyA":
+                    that.left = false;
+                    break;
+                case "ArrowRight":
+                case "KeyD":
+                    that.right = false;
+                    break;
+                case "ArrowUp":
+                case "KeyW":
+                    that.up = false;
+                    break;
+                case "ArrowDown":
+                case "KeyS":
+                    that.down = false;
+                    break;
+            }
+        }
+
+        that.keydown = keydownListener;
+        that.keyup = keyUpListener;
+
+        this.ctx.canvas.addEventListener("keydown", that.keydown, false);
+
+        this.ctx.canvas.addEventListener("keyup", that.keyup, false);
     };
 
     addEntity(entity) {
