@@ -51,29 +51,14 @@ class YogiBear {
         } else if(this.game.down && !this.game.up) {
             this.state = 1;
             this.y += 1;
-        } else if(this.game.down && this.game.left) {
-            this.state = 1;
-            this.y += 1;
-            this.x -= 1;
-        } else if(this.game.down && this.game.right) {
-            this.state = 1;
-            this.y += 1;
-            this.x += 1;
-        } else if(this.game.up && this.game.left) {
-            this.state = 1;
-            this.y -= 1;
-            this.x -= 1;
-        } else if(this.game.up && this.game.right) {
-            this.state = 1;
-            this.y -= 1;
-            this.x += 1;
         } else {
 
         }
         if(this.x > 1024) this.x = 0
+
     };
 
     draw(ctx) {
-        this.animations[this.facing][this.state].drawFrame(this.game.clockTick, ctx, this.x, this.y);
+        this.animations[this.facing][this.state].drawFrame(this.game.clockTick, ctx, this.x - this.game.camera.x, this.y - this.game.camera.y, PARAMS.SCALE);
     };
 }

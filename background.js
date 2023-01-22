@@ -1,6 +1,6 @@
 class Background {
-    constructor(game) {
-
+    constructor(game, x, y) {
+        Object.assign(this, {game, x, y});
     };
     
     update() {
@@ -8,6 +8,6 @@ class Background {
     };
     
     draw(ctx) {
-        ctx.drawImage(ASSET_MANAGER.getAsset("./pixelforest.png"), 0, 0, 1024, 768);
+        ctx.drawImage(ASSET_MANAGER.getAsset("./pixelforest.png"), 0, 0, 2048, 1536);
     }
 }

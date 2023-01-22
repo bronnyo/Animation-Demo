@@ -10,8 +10,15 @@ ASSET_MANAGER.downloadAll(() => {
 	const ctx = canvas.getContext("2d");
 	ctx.imageSmoothingEnabled = false;
 
+	PARAMS.TILEWIDTH = PARAMS.BITWIDTH * PARAMS.SCALE;
+	PARAMS.TILEHEIGHT = PARAMS.BITWIDTH * PARAMS.SCALE;
+
+	PARAMS.CANVAS_WIDTH = canvas.width;
+	PARAMS.CANVAS_HEIGHT = canvas.height;
+
 	gameEngine.addEntity(new YogiBear(gameEngine));
 	gameEngine.addEntity(new Background(gameEngine));
+	gameEngine.addEntity(new SceneManager(gameEngine));
 
 	gameEngine.init(ctx);
 
