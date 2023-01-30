@@ -1,7 +1,7 @@
 class YogiBear {
     constructor(game, x , y) {
         Object.assign(this, {game, x, y});
-        this.animator = new Animator(ASSET_MANAGER.getAsset("./Yogi.png"), .02, 0, 37, 75, 11, 0.2, false);
+        this.animator = new Animator(ASSET_MANAGER.getAsset("./assets/Yogi.png"), .02, 0, 37, 75, 11, 0.2, false);
 
         this.facing = 0; // 0 = right, 1 = left
         this.state = 0;
@@ -23,10 +23,10 @@ class YogiBear {
         }
 
         // 0 = right, 1 = left
-        this.animations[0][0] = new Animator(ASSET_MANAGER.getAsset("./Yogi.png"), 298, 6, 37, 75, 1, 0.2, false);
+        this.animations[0][0] = new Animator(ASSET_MANAGER.getAsset("./assets/Yogi.png"), 298, 6, 37, 75, 1, 0.2, false);
 
-        this.animations[0][1] = new Animator(ASSET_MANAGER.getAsset("./Yogi.png"), 0, 0, 37, 75, 11, 0.2, false);
-        this.animations[1][1] = new Animator(ASSET_MANAGER.getAsset("./Yogi.png"), 1, 82, 37, 75, 11, 0.2, true);
+        this.animations[0][1] = new Animator(ASSET_MANAGER.getAsset("./assets/Yogi.png"), 0, 0, 37, 75, 11, 0.2, false);
+        this.animations[1][1] = new Animator(ASSET_MANAGER.getAsset("./assets/Yogi.png"), 1, 82, 37, 75, 11, 0.2, true);
 
         // this.animator[0][1] = new animator(ASSET_MANAGER.getAsset("./Yogi.png"))
         // this.animator[1][2] = new animator(ASSET_MANAGER.getAsset("./Yogi.png"))
@@ -41,6 +41,7 @@ class YogiBear {
             this.facing = 1;
             this.state = 1;
             this.x -= 1;
+            console.log("moving left");
         } else if(this.game.right && !this.game.left) {
             this.facing = 0;
             this.state = 1;
@@ -48,6 +49,7 @@ class YogiBear {
         } else if(this.game.up && !this.game.down) {
             this.state = 1;
             this.y -= 1;
+            console.log("moving up");
         } else if(this.game.down && !this.game.up) {
             this.state = 1;
             this.y += 1;

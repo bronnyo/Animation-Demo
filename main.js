@@ -2,8 +2,8 @@ const gameEngine = new GameEngine();
 
 const ASSET_MANAGER = new AssetManager();
 
-ASSET_MANAGER.queueDownload("./pixelforest.png");
-ASSET_MANAGER.queueDownload("./Yogi.png");
+ASSET_MANAGER.queueDownload("./assets/pixelforest.png");
+ASSET_MANAGER.queueDownload("./assets/Yogi.png");
 
 ASSET_MANAGER.downloadAll(() => {
 	const canvas = document.getElementById("gameWorld");
@@ -16,11 +16,11 @@ ASSET_MANAGER.downloadAll(() => {
 	PARAMS.CANVAS_WIDTH = canvas.width;
 	PARAMS.CANVAS_HEIGHT = canvas.height;
 
-	gameEngine.addEntity(new YogiBear(gameEngine));
-	gameEngine.addEntity(new Background(gameEngine));
-	gameEngine.addEntity(new SceneManager(gameEngine));
 
 	gameEngine.init(ctx);
+
+	new SceneManager(gameEngine);
+	// gameEngine.addEntity(new Background(gameEngine));
 
 	gameEngine.start();
 });

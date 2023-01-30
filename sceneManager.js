@@ -7,6 +7,9 @@ class SceneManager {
         this.y = 0;
 
         this.yogi = new YogiBear(this.game, 2 * PARAMS.TILEWIDTH, 2 * PARAMS.TILEHEIGHT);
+        this.game.addEntity(this.yogi);
+        this.game.addEntity(new Background(this.game));
+
 
     };
 
